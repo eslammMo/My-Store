@@ -1,0 +1,109 @@
+<section class="row mt-5  align-items-center">
+    <div  class="col-md-4 offset-2 mt-5">
+        <div class="row" *ngFor=" let product of cartItems ;let index = index ">
+            <div class="col-md-5 my-5" >
+              <img src="{{product.url}}"  alt="" class="img-fluid">  
+            </div>
+            <div class="col-md-6 col-sm-12 offset-1 detail-container">
+                <div class="info detail-container">
+                    <ul class="list-unstyled">
+                        <h4>{{product.name}}</h4>
+                        <li>{{product.description}} </li>
+                        <li>${{product.price}}</li>
+                        <div class="input-group mb-3 w-75">
+                            <label class="mt-1 me-1" for="inputGroupFile01">count :</label>
+                            <!-- Get changes of item count and send it to Service-->
+                            <input
+                              type="number" min="1" max="10"
+                              class="form-control"id="inputGroupFile01"
+                              [(ngModel)]="product.count"
+                              (ngModelChange)="changeItemCount()"
+                            />
+                          </div>
+                    </ul>
+                </div>
+
+            </div>
+            <button type="button" (click)="deleteProduct(index)" class="btn btn-danger">Delete from Cart</button>
+        </div>
+
+    </div>
+    <form #form="ngForm" class="col-md-4 my-5 align-items-center d-flex" (ngSubmit)="sendClientName()">
+    <div class="ms-1 mt-5">
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <!-- get name from ui and send it to component -->
+          <input
+            type="text"
+            placeholder="(minimum 3 a characters)"
+             name="FullName" class="form-control"  minlength="3" required [(ngModel)]="ClientName"  #Name="ngModel"/>
+       <!--validating  Client Name -->
+       <div *ngIf="Name.invalid && (Name.dirty || Name.touched)"
+           class="alert" style="color:red;">
+       
+         <div *ngIf="Name.errors?.['required']">
+           Name is required !
+         </div>
+         <div *ngIf="Name.errors?.['minlength']">
+           Name must be at least 3 characters long !
+         </div>
+       </div>
+             <!-- get Client Adress  -->
+          <div class="mb-3">
+            <label class="form-label">Adress</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Adress"
+              placeholder="(minimum 6 a characters)"
+              required
+              minlength="6"
+              ngModel
+              #Adress="ngModel"
+            />
+            <!--Validating Client Adress-->
+            <div *ngIf="Adress.invalid && (Adress.dirty || Adress.touched)"
+            class="alert" style="color: red;">
+        
+          <div *ngIf="Adress.errors?.['required']">
+            Adress is required!
+          </div>
+          <div *ngIf="Adress.errors?.['minlength']">
+            Adress must be at least 6 characters long !
+          </div>
+        </div>
+          </div>
+          <!--get User credit card-->
+          <div class="mb-3">
+            <label class="form-label">Credit Card Number</label>
+            <input
+              class="form-control"
+              name="CreditCard"
+              placeholder="(16-digit number)"required maxlength="16" minlength="16"
+              ngModel
+              #card="ngModel"
+            />
+            <!--Validating User Credit card-->
+            <div *ngIf="card.invalid && (card.dirty || card.touched)"
+            class="alert" style="color: red;">
+        
+          <div *ngIf="card.errors?.['required']">
+            Credit Card  is required.
+          </div>
+          <div *ngIf="card.errors?.['minlength']">
+            must enter valid card Informations !
+          </div>
+        </div>
+          </div>
+          <p>We'll never share your payment details with anyone else</p>
+          <input
+            type="submit" class="btn btn-primary" [disabled]="form.invalid"value="Submit"/>
+        
+        </div>
+        <h6 class="my-3">Total price : ${{ total }}</h6>
+
+    </div>
+
+    </form>
+
+</section>

@@ -1,0 +1,27 @@
+
+<div class="container vh-100  d-flex justify-content-center align-items-center">
+<div class="row ">
+ 
+<div class="col-md-4  ms-auto d-flex  align-items-center  " id="imgCon"  >
+    <div>
+        <img src="{{product.url}}" alt="{{product.description}}" class="w-75 rounded" >
+    </div>
+</div>
+<div class="col-md-4 me-auto   d-flex  align-items-center " >
+    <div >
+    <h3 class="font-weight-bold ">{{product.name}}</h3>
+    <h5>{{product.price}}</h5>  
+    <h5>{{product.description}}</h5>
+    
+    <div class="details">
+    <!-- get any edit on product count-->
+    <input type="number" max="10" min="1" [(ngModel)]="product.count"  value="{{product.count}}">
+   <br><br>
+    <!-- add product to cart -->
+   <button class="btn btn-primary" (click)="addProduct(product)">Add to cart</button>
+   <br>
+   <a [routerLink]="['/productList']"> Back to Product List</a>
+</div>
+</div>
+</div>
+</div>

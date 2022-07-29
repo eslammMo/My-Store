@@ -1,0 +1,25 @@
+ <!-- Item Details-->
+    <div id="imgCon" class="mx-1 my-1" [routerLink]="['/Details/',item.id]" >
+        <img src="{{item.url}}" alt="{{item.description}}" class="w-75" >
+    </div>
+    <div>
+        <h3>{{item.name}}</h3>
+        <h4>{{item.price}}</h4>  
+         <!-- detecting any change on Count of every product -->
+        <div class="details">
+        <select [(ngModel)]="item.count" class=" form-select-sm-dark" aria-label=".form-select-sm example" >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div> 
+     <!-- add product to cart -->
+    <button class="btn btn-primary" (click)="add()" >Add to cart</button>
+   </div>

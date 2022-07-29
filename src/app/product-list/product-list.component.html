@@ -1,0 +1,7 @@
+ <!-- loop on data then pass it to child(product item component) -->
+<div class="container">
+  <div class="row">
+     <!-- add product to cart  -->
+      <app-product-item *ngFor="let item of proudctList" class="col-md-4 card" [item]="item" (selectedProduct)="addtoCart($event)" ></app-product-item>
+  </div>
+</div>
